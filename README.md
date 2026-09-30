@@ -1,31 +1,61 @@
-# SecureURL — URL Risk Analyzer
+# 🛡️ SecureURL — URL Risk Analyzer
 
-SecureURL is a student-built Flask web application that performs a rule-based heuristic analysis of a URL and presents potentially suspicious indicators.
+A student-built Flask web application that performs a rule-based security analysis of URLs and presents potential risk indicators.
 
-## Features
-- HTTPS usage check
-- URL length check
-- IP-address-based URL detection
+## 🌐 Live Demo
+
+👉 https://secureurl-1.onrender.com/
+
+No installation is required to use the live application.
+
+## ✨ Features
+
+- URL security analysis
+- HTTPS detection
+- URL length analysis
+- IP-address URL detection
 - Suspicious keyword detection
-- Multiple-subdomain check
+- Multiple-subdomain detection
 - `@` symbol detection
-- Common URL-shortener detection
-- 0–100 heuristic risk score
-- LOW / MEDIUM / HIGH classification
-- Responsive web interface
+- URL-shortener detection
+- Risk score from 0–100
+- LOW / MEDIUM / HIGH risk classification
+- Security findings and explanations
+- Responsive cybersecurity-themed interface
 
-## Tech Stack
-Python · Flask · HTML · CSS
+## 🛠️ Technology Stack
 
-## How it works
-The application parses the submitted URL locally and evaluates several observable URL characteristics. Selected indicators contribute to a heuristic score, which is mapped to LOW, MEDIUM, or HIGH risk.
+- Python
+- Flask
+- HTML5
+- CSS3
+- Gunicorn
+- Render
 
-## Run locally
-```bash
-pip install -r requirements.txt
-python app.py
-```
-Then open `http://127.0.0.1:5000`.
+## 🔒 How It Works
 
-## Limitations
-SecureURL is an educational rule-based project. It does not contact threat-intelligence databases, visit the submitted website, or prove that a URL is safe or malicious. A production security product would require stronger validation, reputation data, robust URL parsing, and additional security controls.
+SecureURL analyzes the structure of a submitted URL using predefined security heuristics.
+
+The analyzer **does not open, visit, or execute the submitted website**. It only examines the URL string and its parsed components.
+
+## ⚠️ Important Limitation
+
+SecureURL is a **rule-based educational security analyzer**.
+
+A HIGH or LOW score does not prove that a website is malicious or safe. The analyzer does not perform real-time threat-intelligence lookups, malware scanning, or website-content inspection.
+
+URL shortening services and suspicious keywords can produce warnings even when a URL may be legitimate.
+
+## 📂 Project Structure
+
+```text
+SecureURL/
+├── app.py
+├── analyzer.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── templates/
+│   └── index.html
+└── static/
+    └── style.css
