@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureURL | URL Risk Analyzer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="/">Secure<span>URL</span></a>
+<span class="badge">CYBERSECURITY PROJECT</span>
+</header>
+
+<main>
+<section class="hero">
+<p class="eyebrow">URL SECURITY ANALYZER</p>
+<h1>Check a URL before <span>you trust it.</span></h1>
+<p class="subtitle">A rule-based analyzer that examines common URL characteristics and highlights potentially suspicious indicators.</p>
+<form method="POST" class="search-box">
+<input type="text" name="url" placeholder="https://example.com" required>
+<button type="submit">Analyze URL <span>→</span></button>
+</form>
+<p class="hint">No website is opened or visited by the analyzer.</p>
+</section>
+
+{% if result %}
+<section class="result-card">
+<div class="result-head">
+<div><p class="eyebrow">ANALYSIS RESULT</p><h2 class="{{ result.risk|lower }}">{{ result.risk }} RISK</h2></div>
+<div class="score {{ result.risk|lower }}"><strong>{{ result.score }}</strong><small>/100</small></div>
+</div>
+<div class="url-display">{{ result.url }}</div>
+<div class="findings">
+{% for type, message in result.findings %}
+<div class="finding {{ type }}"><span class="icon">{% if type == "safe" %}✓{% elif type == "warning" %}!{% else %}×{% endif %}</span><span>{{ message }}</span></div>
+{% endfor %}
+</div>
+<p class="disclaimer">This is a heuristic assessment based on URL characteristics. It does not prove that a URL is safe or malicious.</p>
+</section>
+{% endif %}
+
+<section class="how">
+<p class="eyebrow">HOW IT WORKS</p>
+<h2>Several signals. <span>One simple report.</span></h2>
+<div class="checks">
+<article><b>01</b><h3>Connection</h3><p>Checks whether HTTPS is used.</p></article>
+<article><b>02</b><h3>Structure</h3><p>Examines URL length, domain structure and IP-based URLs.</p></article>
+<article><b>03</b><h3>Indicators</h3><p>Looks for suspicious keywords, @ symbols and URL shorteners.</p></article>
+</div>
+</section>
+
+<section class="limitations">
+<p class="eyebrow">LIMITATION</p>
+<p>SecureURL is a student-built rule-based project. It does not query threat-intelligence databases and should not be used as the sole basis for a security decision.</p>
+</section>
+</main>
+
+<footer>SecureURL · Built with Python & Flask</footer>
+</body>
+</html>
